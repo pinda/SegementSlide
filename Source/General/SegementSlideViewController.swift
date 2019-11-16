@@ -42,13 +42,13 @@ open class SegementSlideViewController: UIViewController {
     public var headerStickyHeight: CGFloat {
         let headerHeight = segementSlideHeaderView.frame.height.rounded(.up)
         if edgesForExtendedLayout.contains(.top) {
-            return headerHeight - topLayoutLength
+            return headerHeight - topLayoutLength - headerMinHeight
         } else {
-            return headerHeight
+            return headerHeight - headerMinHeight
         }
     }
     public var contentViewHeight: CGFloat {
-        return view.bounds.height-topLayoutLength-switcherHeight
+        return view.bounds.height-topLayoutLength-headerMinHeight-switcherHeight
     }
     public var currentIndex: Int? {
         return segementSlideSwitcherView.selectedIndex
@@ -75,6 +75,10 @@ open class SegementSlideViewController: UIViewController {
     
     open var switcherHeight: CGFloat {
         return 44
+    }
+    
+    open var headerMinHeight: CGFloat {
+        return 0
     }
     
     open var switcherConfig: SegementSlideSwitcherConfig {
